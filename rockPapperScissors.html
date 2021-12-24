@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock Papper Scissors</title>
+    <script>
+        let options =["rock","paper","scissor"]
+        //function to return computer random options 
+        function computerPlay(){
+            //Math.floor(Math.random()*(max-min+1)+min) to get random int from [min,max)
+            let i = Math.floor(Math.random()*(2-0+1)+0)
+            console.log(options[i])
+            return options[i]
+        }
+
+        //compare selections to determine winner and the corresponding message.
+        function playRound(playerSelection, computerSelection){
+            if(playerSelection == computerSelection){
+                return ("It is a tie! no winner.")
+            }
+            else if (playerSelection=="rock" && computerSelection=="scissor"){
+                return ("You win! rock beats scissors");
+            } 
+            else if(playerSelection=="rock" && computerSelection=="paper"){
+                return("You lose! paper beats rock");
+            } 
+            else if(playerSelection=="scissor" && computerSelection=="paper"){
+                return("You win! scissor beats paper");
+            }   
+            else if(playerSelection=="scissor" && computerSelection=="rock"){
+                return("You lose! rock beats scissors");
+            }    
+            else if(playerSelection=="paper" && computerSelection=="rock"){
+                return("You win! paper beats rock");
+            } 
+            else if(playerSelection=="paper" && computerSelection=="scissor"){
+                return("You lose! scissor beats paper");  }  
+            else{
+                return("Please enter rock, paper, or scissor to play!");
+            }
+                
+        }
+        function game(){
+            let yourScore = 0;
+            let computerScore = 0;
+            let result;
+            for(let i=0; i<5; i++){
+                let computerSelection = computerPlay();
+                
+                let playerSelection = prompt("Enter your choice: ");
+                
+                if(playerSelection){
+                    
+                result = playRound(playerSelection.toLowerCase(),computerSelection);}
+
+                //use string.includes("string") to find winngs and record scores.
+                if(result.includes("You win")){
+                    yourScore +=1;
+                }
+                else if(result.includes("tie")){
+                    
+                }
+                else {
+                    computerScore += 1;}
+                console.log(result)
+                console.log("Your Score: "+ yourScore +` Computer Score: ${computerScore}.`)
+
+            }
+        }
+        game();
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
