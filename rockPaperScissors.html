@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock Papper Scissors</title>
+    <script>
+        let options =["rock","paper","scissor"]
+        let yourScore = 0;
+        let computerScore = 0;
+        //function to return computer random options 
+        function computerPlay(){
+            //Math.floor(Math.random()*(max-min+1)+min) to get random int from [min,max)
+            let i = Math.floor(Math.random()*(2-0+1)+0)
+            console.log(options[i])
+            return options[i]
+        }
+
+        //compare selections to determine winner and the corresponding message.
+        function playRound(playerSelection){
+            let computerSelection = computerPlay();
+            const div=document.querySelector('#result');
+             
+
+            if(playerSelection == computerSelection){
+                div.innerText="It is a tie! no winner."
+
+            }
+            else if (playerSelection=="rock" && computerSelection=="scissor"){
+                div.innerText="You win! rock beats scissors";
+                yourScore += 1;
+                displayScore();
+            } 
+            else if(playerSelection=="rock" && computerSelection=="paper"){
+                div.innerText="You lose! paper beats rock";
+                computerScore += 1;
+                displayScore();
+            } 
+            else if(playerSelection=="scissor" && computerSelection=="paper"){
+                div.innerText="You win! scissor beats paper";
+                yourScore += 1;
+                displayScore();
+            }   
+            else if(playerSelection=="scissor" && computerSelection=="rock"){
+                div.innerText="You lose! rock beats scissors";
+                computerScore += 1;
+                displayScore();
+            }    
+            else if(playerSelection=="paper" && computerSelection=="rock"){
+                div.innerText="You win! paper beats rock";
+                yourScore += 1;
+                displayScore();
+            } 
+            else if(playerSelection=="paper" && computerSelection=="scissor"){
+                div.innerText="You lose! scissor beats paper";  
+                computerScore += 1;
+                displayScore(); 
+            }
+            
+        }
+
+        function displayScore(){
+            determineWinner();  
+            const div = document.querySelector('#score');
+            div.innerText = `Your Score: ${yourScore}  Computer Score: ${computerScore}`
+        }
+
+        function determineWinner(){
+            if(yourScore==5){
+                alert("You got 5 points, you won!")
+                yourScore = 0;
+                computerScore = 0;
+            }
+            else if(computerScore==5){
+                alert("Computer got 5 points, you lost!")
+                yourScore = 0;
+                computerScore = 0;
+            }
+        }
+        
+           
+            
+        
+    </script>
+</head>
+<body>
+    <button onclick="playRound('rock')">Rock</button>
+    <button onclick="playRound('paper')">Paper</button>
+    <button onclick="playRound('scissor')">Scissor</button>
+    <div id='result'></div>
+    <div id='score'></div>
+</body>
+</html>
